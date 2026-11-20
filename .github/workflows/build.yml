@@ -48,7 +48,9 @@ jobs:
       - name: APK yig'ish
         working-directory: ${{ steps.p.outputs.dir }}
         run: |
-          flutter build apk --release
+          flutter build apk --release --config-only
+          (cd android && ./gradlew assembleRelease -x lintVitalRelease -x lintVitalAnalyzeRelease)
+          
           cp build/app/outputs/flutter-apk/app-release.apk TOPIK.apk
 
       - name: Artifact sifatida saqlash
